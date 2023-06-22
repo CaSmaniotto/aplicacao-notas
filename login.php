@@ -6,8 +6,6 @@ if (isset($_POST['logar'])) {
     include "conexao.php";
     try {
         $sql = $pdo->prepare("SELECT * FROM usuarios WHERE email=?");
-        // $sql->execute([$id_usuario, $id_anotacao]); 
-        // $anotacoes = $sql->fetchAll(PDO::FETCH_ASSOC);
         $sql->execute(array($_POST['email'])); 
         $dados = $sql->fetch(PDO::FETCH_ASSOC);
 
