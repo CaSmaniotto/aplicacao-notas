@@ -1,7 +1,0 @@
-mysql -h localhost -u root -p
-
-ao clicar em para adicionar uma anotacao,
- isset(enviar) include funcoes_crud,
-  inserirAnotacao $_POST['nome'], blablabla
-
-colocar funcao hash na senha

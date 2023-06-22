@@ -35,7 +35,7 @@ if ($anotacoes) {
     
     }
 } else {
-    echo "<p>O que deseja fazer ?</p>";
+    echo "<p>Não há nada aqui ainda</p>";
 };
 
 ?>

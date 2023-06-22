@@ -13,7 +13,7 @@ foreach ($campos as $campo) {
 if (isset($_POST['enviar']) && $valido) {
     include "conexao.php";
     $sql = $pdo->prepare("INSERT INTO usuarios VALUES (null, ?, ?, ?)");
-    $sql->execute(array($_POST['nome'], $_POST['email'], md5($_POST['senha'])));
+    $sql->execute(array($_POST['nome'], $_POST['email'], password_hash($_POST['senha'], PASSWORD_DEFAULT)));
     header('Location: index.php');
     exit;
 }
@@ -28,6 +28,7 @@ if (isset($_POST['enviar']) && $valido) {
     <title>Criar conta</title>
 </head>
 <body>
+<h1>Criando conta</h1>
     <form method="POST">
         <label for="">Nome</label>
         <input type="text" name="nome" required>

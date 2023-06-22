@@ -14,6 +14,7 @@ foreach ($campos as $campo) {
 
 if ($_GET['id_anotacao']) {
     include "conexao.php";
+    
     $id_anotacao = (int)$_GET['id_anotacao'];
     $id_usuario = $_SESSION['dados']['id'];
 
@@ -47,4 +48,5 @@ if ($_GET['id_anotacao']) {
     <label for="">Conteúdo</label><br>
     <textarea name="conteudo" id="" cols="30" rows="10"><?php echo $anotacoes['conteudo']; ?></textarea><br>
     <input type="submit" name="enviar" value="Atualizar">
+    <a href="feed.php">Cancelar</a>
 </form>

@@ -2,9 +2,6 @@
 
 include "verificarLogin.php";
 
-echo "<a href='feed.php'>Voltar</a> |";
-echo "<a href='logout.php'>Sair</a>";
-
 $campos = ['titulo', 'conteudo'];
 $valido = True;
 
@@ -25,10 +22,13 @@ if (isset($_POST['enviar']) && $valido) {
 
 ?>
 
+<h1>Criando nova nota</h1>
+
 <form method="POST">
     <label>Título</label><br>
     <input placeholder="Insira um título..." name="titulo" type="text"><br>
     <label>Sobre</label><br>
     <textarea id="" cols="30" rows="10" placeholder="Digite sobre..." name="conteudo"></textarea><br>
     <input type="submit" value="Enviar" name="enviar">
+    <a href='feed.php'>Cancelar</a>
 </form>

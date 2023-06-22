@@ -5,23 +5,23 @@ session_start();
 if (isset($_POST['logar'])) {
     include "conexao.php";
     try {
-        $sql = $pdo->prepare("SELECT * FROM usuarios WHERE email=:email AND senha=:senha");
-        $sql->bindValue(':email', $_POST['email'], PDO::PARAM_STR);
-        $sql->bindValue(':senha',  md5($_POST['senha']), PDO::PARAM_STR);
-        $sql->execute();
+        $sql = $pdo->prepare("SELECT * FROM usuarios WHERE email=?");
+        // $sql->execute([$id_usuario, $id_anotacao]); 
+        // $anotacoes = $sql->fetchAll(PDO::FETCH_ASSOC);
+        $sql->execute(array($_POST['email'])); 
         $dados = $sql->fetch(PDO::FETCH_ASSOC);
-        if ($dados) {
+
+        if (password_verify($_POST['senha'], $dados['senha'])) {
             $_SESSION['logado'] = true;
             $_SESSION['dados'] = array('id' => $dados['id'],
                                        'nome' => $dados['nome'],
                                        'email' => $dados['email']);
             header('Location: feed.php');
             exit;
-        }
-        else {
+        } else {
             echo "Email ou senha incorretos!";
         }
-    } catch(Exception $e)  {
+    } catch(Exception $e) {
         echo "Erro!", $e->getMessage();
     }
 }
@@ -36,6 +36,7 @@ if (isset($_POST['logar'])) {
     <title>Entrar</title>
 </head>
 <body>
+    <h1>Login</h1>
     <form method="POST">
         <label for="">Email</label>
         <input type="email" name="email" required>
